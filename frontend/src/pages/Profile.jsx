@@ -25,9 +25,7 @@ const Profile = () => {
     username: '',
     email: '',
     bio: '',
-    avatar: '',
-    location: '',
-    website: ''
+    avatar: ''
   });
 
   // Determine if this is the current user's profile or someone else's
@@ -93,7 +91,6 @@ const Profile = () => {
         excerpt: blog.excerpt || blog.content?.substring(0, 100) + '...',
         publishedAt: formatDate(blog.createdAt),
         views: blog.views || 0,
-        likes: blog.likes || 0,
         status: blog.published ? 'published' : 'draft',
         coverImage: blog.coverImage || 'https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80'
       })).sort((a, b) => new Date(b.publishedAt) - new Date(a.publishedAt));
@@ -144,9 +141,7 @@ const Profile = () => {
           username: user.username || '',
           email: user.email || '',
           bio: user.bio || 'Passionate writer and storyteller',
-          avatar: user.avatar || '',
-          location: user.location || '',
-          website: user.website || ''
+          avatar: user.avatar || ''
         });
       }
 
@@ -239,9 +234,7 @@ const Profile = () => {
       username: user.username || '',
       email: user.email || '',
       bio: user.bio || 'Passionate writer and storyteller',
-      avatar: user.avatar || '',
-      location: user.location || '',
-      website: user.website || ''
+      avatar: user.avatar || ''
     });
   };
 
@@ -385,30 +378,6 @@ const Profile = () => {
                     {displayUser?.bio || formData.bio}
                   </p>
                   <div className="flex flex-wrap justify-center lg:justify-start gap-4 text-sm text-gray-500 mb-6">
-                    {(displayUser?.location || formData.location) && (
-                      <div className="flex items-center">
-                        <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                        </svg>
-                        {displayUser?.location || formData.location}
-                      </div>
-                    )}
-                    {(displayUser?.website || formData.website) && (
-                      <div className="flex items-center">
-                        <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
-                        </svg>
-                        <a 
-                          href={displayUser?.website || formData.website} 
-                          className="text-blue-600 hover:text-blue-700"
-                          target="_blank" 
-                          rel="noopener noreferrer"
-                        >
-                          {displayUser?.website || formData.website}
-                        </a>
-                      </div>
-                    )}
                     <div className="flex items-center">
                       <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207" />
@@ -438,28 +407,6 @@ const Profile = () => {
                       className="block w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-primary-500 bg-white/50 backdrop-blur-sm"
                       placeholder="Tell us about yourself"
                     />
-                  </div>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">Location</label>
-                      <input
-                        type="text"
-                        value={formData.location}
-                        onChange={(e) => setFormData({...formData, location: e.target.value})}
-                        className="block w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-primary-500 bg-white/50 backdrop-blur-sm"
-                        placeholder="Your location"
-                      />
-                    </div>
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">Website</label>
-                      <input
-                        type="url"
-                        value={formData.website}
-                        onChange={(e) => setFormData({...formData, website: e.target.value})}
-                        className="block w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-primary-500 bg-white/50 backdrop-blur-sm"
-                        placeholder="https://yourwebsite.com"
-                      />
-                    </div>
                   </div>
                 </div>
               )}
@@ -642,12 +589,6 @@ const Profile = () => {
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
                             </svg>
                             {post.views}
-                          </div>
-                          <div className="flex items-center">
-                            <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-                            </svg>
-                            {post.likes}
                           </div>
                         </div>
                       </div>

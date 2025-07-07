@@ -25,10 +25,6 @@ const blogSchema = new mongoose.Schema({
     ref: 'User',
     required: false
   },
-  tags: [{
-    type: String,
-    trim: true
-  }],
   category: {
     type: String,
     default: 'General'
@@ -37,15 +33,7 @@ const blogSchema = new mongoose.Schema({
     type: Boolean,
     default: false
   },
-  featured: {
-    type: Boolean,
-    default: false
-  },
   views: {
-    type: Number,
-    default: 0
-  },
-  likes: {
     type: Number,
     default: 0
   },
@@ -58,7 +46,7 @@ const blogSchema = new mongoose.Schema({
 });
 
 // Add text index for search functionality
-blogSchema.index({ title: 'text', content: 'text', tags: 'text' });
+blogSchema.index({ title: 'text', content: 'text' });
 
 const Blog = mongoose.model('Blog', blogSchema);
 

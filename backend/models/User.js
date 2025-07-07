@@ -22,11 +22,6 @@ const userSchema = new mongoose.Schema({
     required: true,
     minlength: 6
   },
-  role: {
-    type: String,
-    enum: ['user', 'admin'],
-    default: 'user'
-  },
   avatar: {
     type: String,
     default: ''
@@ -34,16 +29,6 @@ const userSchema = new mongoose.Schema({
   bio: {
     type: String,
     maxlength: 500,
-    default: ''
-  },
-  location: {
-    type: String,
-    maxlength: 100,
-    default: ''
-  },
-  website: {
-    type: String,
-    maxlength: 200,
     default: ''
   }
 }, {
